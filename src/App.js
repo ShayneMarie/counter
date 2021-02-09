@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 
 import React, { useState } from 'react';
 
@@ -25,21 +25,23 @@ function Example() {
   }
 
   return (
-    <div>
+    <div className='counter'>
       <p>Counter: {count}</p>
       <p>Number of button clicks: {btnCount}</p>
       <p>Number of reset button clicks: {rstCount}</p>
       <p>Number of increment button clicks: {incCount}</p>
       <p>Number of decrement button clicks: {decCount}</p>
-      <button onClick={() => buttonClickHandler(setRstCount, rstCount, 'reset')}>
-        Reset
-      </button>
-      <button onClick={() => buttonClickHandler(setIncCount, incCount, 'increment')}>
-        Increment
-      </button>
-      <button onClick={() => buttonClickHandler(setDecCount, decCount, 'decrement')}>
-        Decrement
-      </button>      
+      <div class="buttons">
+        <button class="reset-button" onClick={() => buttonClickHandler(setRstCount, rstCount, 'reset')}>
+          Reset
+        </button>
+        <button class="increment-button" onClick={() => buttonClickHandler(setIncCount, incCount, 'increment')}>
+          Increment
+        </button>
+        <button class="decrement-button" onClick={() => buttonClickHandler(setDecCount, decCount, 'decrement')}>
+          Decrement
+        </button>      
+      </div>
     </div>
   );
 }
