@@ -16,8 +16,7 @@ function Example() {
     setBtnCount(btnCount + 1)
     setButton(button + 1)
 
-    if (label === 'increment')
-      setCount(count + 1)
+    if (label === 'increment') setCount(count + 1);
     else if (label === 'decrement')
       setCount(count - 1)
     else if (label === 'reset')
