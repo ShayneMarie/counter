@@ -1,6 +1,7 @@
 import './App.scss';
 
 import React, { useState } from 'react';
+import $ from 'jquery';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -16,11 +17,32 @@ function Example() {
     setBtnCount(btnCount + 1)
     setButton(button + 1)
 
-    if (label === 'increment') setCount(count + 1);
+    if (label === 'increment') 
+      setCount(count + 1);
     else if (label === 'decrement')
       setCount(count - 1)
     else if (label === 'reset')
       setCount(0)
+
+    let context = this;
+
+    $.ajax({
+      url: "http://localhost:3000/api/v1/counter/save",
+      method: "POST",
+      data: {
+        count: context.state.count,
+        btnCount: context.state.btnCount,
+        rstCount: context.state.rstCount,
+        incCount: context.state.incCount,
+        decCount: context.state.decCount
+      },
+      success: function(response) {
+        alert("Successfully saved record!");
+      },
+      error: function(response) {
+        alert("Error in saving record!");
+      }
+    });
   }
 
   return (
@@ -31,7 +53,7 @@ function Example() {
       <p>Number of increment button clicks: {incCount}</p>
       <p>Number of decrement button clicks: {decCount}</p>
       <div class="buttons">
-        <button class="reset-button" onClick={() => buttonClickHandler(setRstCount, rstCount, 'reset')}>
+        <button class="reset-button" onClick={() => buttonClickHandler(setRstCount, rstCount, 'reset')} >
           Reset
         </button>
         <button class="increment-button" onClick={() => buttonClickHandler(setIncCount, incCount, 'increment')}>
